@@ -1,0 +1,53 @@
+{
+    "pipelineName": "User inputted",
+    "id": "mongoDbInputted",
+    "taskList": [
+        {
+            "taskType": "task",
+            "taskName": "User inputted",
+            "taskDescription": "un-required user inputted",
+            "taskNodeName": "UriAvailabilityChecker",
+            "data": {
+                "uri": "https://freezix.com"
+            }
+        },
+        {
+            "taskType": "logicalBlock",
+            "taskName": "User inputted",
+            "taskDescription": "un-required user inputted",
+            "logicalBlockName": "ConditionalRouter",
+            "data": {
+                "true": {
+                    "taskType": "task",
+                    "taskName": "notify success",
+                    "taskDescription": "Website working and notifying success to user",
+                    "taskNodeName": "DiscordWebhookSender",
+                    "data": {
+                        "webhook": "https://discord.com/api/webhooks/1501142388033458246/hAIEw_yzv2-96ZGPe2_rugtPSb61kOoV2HLQnt7tsOrMr-EQnzaoWK3aRbMvDctFwxTr",
+                        "message": "The website does work !"
+                    }
+                },
+                "false": {
+                    "taskType": "task",
+                    "taskName": "notify success",
+                    "taskDescription": "Website working and notifying success to user",
+                    "taskNodeName": "DiscordWebhookSender",
+                    "data": {
+                        "webhook": "https://discord.com/api/webhooks/1501142388033458246/hAIEw_yzv2-96ZGPe2_rugtPSb61kOoV2HLQnt7tsOrMr-EQnzaoWK3aRbMvDctFwxTr",
+                        "message": "The website does not work !"
+                    }
+                },
+                "default": {
+                    "taskType": "task",
+                    "taskName": "notify success",
+                    "taskDescription": "Website working and notifying success to user",
+                    "taskNodeName": "DiscordWebhookSender",
+                    "data": {
+                        "webhook": "https://discord.com/api/webhooks/1501142388033458246/hAIEw_yzv2-96ZGPe2_rugtPSb61kOoV2HLQnt7tsOrMr-EQnzaoWK3aRbMvDctFwxTr",
+                        "message": "The task did not return a boolean !"
+                    }
+                }
+            }
+        }
+    ]
+}
