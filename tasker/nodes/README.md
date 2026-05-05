@@ -53,3 +53,42 @@ export default UriChecker;
 the assertData and the Run is two **needed** function the task will throw and stop the pipeline if one of these two dont exist
 ( you can add as many other function in it and import what is needed )
 
+
+## json requirement
+the folder json requirement **need** to contain a .json being the same name as the node otherwise it cant be communicated trough the api and your module can't be used , it must follow  ( as exemple here )
+
+```
+
+{
+    "title" : "Temp checker",
+    "description" : "Check the temperature trough a web api and return wether it is in a minimal threshold or not",
+    "validationFields" : 
+    [
+        {
+            "title" : "the title that will be displayed at the top",
+            "labelText" : "the text the label will have in front of it",
+            "placeholder" : "Can be empty",
+            "required" : true,
+            "wantedType" : "string/int/bool -> note that if left empty no check is done , and you will need to rely on the assert data",
+            "min" : 1,
+            "max" : 20
+        },
+        {
+            "title" : "Minimal temperature",
+            "labelText" : "min temp.",
+            "placeholder" : "ex : 10",
+            "required" : true,
+            "wantedType" : "int",
+            "min" : -20,
+            "max" : 100
+        }
+    ]
+
+}
+
+```
+
+**note** you can only put 1 type at a time
+**note** if its a string the min max is about the length 
+**note** if its a int the min max is about the int itself
+**note** validation field required key is only title and labelText, but you will likely need heavy assert check afterward

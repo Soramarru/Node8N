@@ -8,7 +8,6 @@ const tasker =
 
         // get the task and execute it until it end
         console.log("executing : " , json.pipelineName);
-        
         let savedResult = null;
         for (const element of json.taskList) 
         {  
@@ -44,7 +43,7 @@ const tasker =
         if(taskObj.taskType == "logicalBlock")
             return await this.executeLogicalBlock(taskObj , savedResult);
         else
-            throw new Error("The task type does not match any thing");
+            throw new Error("The task type was unexpected " , taskObj.taskType);
         // return task
     }
 

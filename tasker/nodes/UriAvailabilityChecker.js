@@ -15,9 +15,16 @@ const UriChecker =
 
     async run(checkedData)
     {
-        // if the data assertion worked the test is runned
-        const fetchResult = await fetch(checkedData.uri);
-        return fetchResult.status === 200;
+        try
+        {
+            // if the data assertion worked the test is runned
+            const fetchResult = await fetch(checkedData.uri);
+            return fetchResult.status === 200;
+        }
+        catch
+        {
+            return false;
+        }
     },
 }
 

@@ -8,7 +8,7 @@
             "taskDescription": "un-required user inputted",
             "taskNodeName": "UriAvailabilityChecker",
             "data": {
-                "uri": "https://freezix.com"
+                "uri": "https://frezix.com"
             }
         },
         {
@@ -29,8 +29,8 @@
                 },
                 "false": {
                     "taskType": "task",
-                    "taskName": "notify success",
-                    "taskDescription": "Website working and notifying success to user",
+                    "taskName": "notify failure",
+                    "taskDescription": "Website not working and notifying failure to user",
                     "taskNodeName": "DiscordWebhookSender",
                     "data": {
                         "webhook": "https://discord.com/api/webhooks/1501142388033458246/hAIEw_yzv2-96ZGPe2_rugtPSb61kOoV2HLQnt7tsOrMr-EQnzaoWK3aRbMvDctFwxTr",
@@ -39,8 +39,8 @@
                 },
                 "default": {
                     "taskType": "task",
-                    "taskName": "notify success",
-                    "taskDescription": "Website working and notifying success to user",
+                    "taskName": "notify unexpected",
+                    "taskDescription": "Website at unknown state and notifying unexpected to user",
                     "taskNodeName": "DiscordWebhookSender",
                     "data": {
                         "webhook": "https://discord.com/api/webhooks/1501142388033458246/hAIEw_yzv2-96ZGPe2_rugtPSb61kOoV2HLQnt7tsOrMr-EQnzaoWK3aRbMvDctFwxTr",
