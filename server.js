@@ -3,6 +3,7 @@ import tasker from "./tasker/tasker.js";
 
 async function init()
 {
-    startApi();
+    await startApi();
     // Start cron loop
 }
+init();

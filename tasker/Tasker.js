@@ -48,5 +48,5 @@ const tasker =
     }
 
 }
-tasker.executePipeline(example);
+// tasker.executePipeline(example);
 export default tasker;
