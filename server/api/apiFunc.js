@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import fs from 'fs/promises';
 import userDBaccess from "../db/userDb.js";
 let saltRounds = 13;
 
@@ -68,6 +69,15 @@ let apiFunc =
         else
             res.status(403).send({ status: "error", "message": "The password doesn't match the username", data: {} });
     },
+
+    async getReqList(req,res)
+    {
+        let folderReqPath = "../tasker/nodes/jsonRequirement";
+        let dir = await fs.readdir(folderReqPath);
+        console.log(dir);
+        res.status(200).send({ status: "success", "message": "fetch successfull", data: { } });
+    }
+
 }
 
 async function hashPassword(password)

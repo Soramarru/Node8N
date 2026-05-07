@@ -18,8 +18,10 @@ const server = http.createServer(app);
 
 app.post("/auth/login" , apiFunc.loginUser)
 app.post("/auth/register",  apiFunc.createUser )
+app.get("/nodes/requirement/list" , apiFunc.getReqList)
+app.use("/nodes/requirement/" , express.static(path.join("../tasker/nodes/jsonRequirement")));
 
 server.listen(port, () => 
-{
+{ 
   console.log("API server started on http://localhost:" + port);
 });
