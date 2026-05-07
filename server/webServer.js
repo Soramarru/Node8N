@@ -21,6 +21,8 @@ app.post("/auth/register",  apiFunc.createUser )
 app.get("/nodes/requirement/list" , apiFunc.getReqList)
 app.use("/nodes/requirement/" , express.static(path.join("../tasker/nodes/jsonRequirement")));
 
+app.post("/task/create" , apiFunc.createTask);
+
 async function startApi() 
 {
   server.listen(port, () => 

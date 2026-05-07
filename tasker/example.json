@@ -1,6 +1,8 @@
 {
     "pipelineName": "User inputted",
+    "pipelineDesc" : "User inputted",
     "id": "mongoDbInputted",
+    "idOwner" : "sqlUserID",
     "taskList": [
         {
             "taskType": "task",
@@ -8,7 +10,7 @@
             "taskDescription": "un-required user inputted",
             "taskNodeName": "UriAvailabilityChecker",
             "data": {
-                "uri": "https://frezix.com"
+                "uri": "https://frezzix.com"
             }
         },
         {

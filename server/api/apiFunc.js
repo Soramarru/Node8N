@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import crypto from "crypto";
 import fs from 'fs/promises';
 import userDBaccess from "../db/userDb.js";
+import TaskAccess from "../mongoDb/taskAccess.js";
 let saltRounds = 13;
 
 let apiFunc =
@@ -15,7 +16,6 @@ let apiFunc =
      */
     async createUser(req, res)
     {
-        console.log(req.body);
         if (!req.body || !req.body.username || !req.body.password)
             return res.status(400).json({ status: "error", message: "Every input must be filled !", data: null });
         let { password, username } = req.body;
@@ -74,8 +74,29 @@ let apiFunc =
     {
         let folderReqPath = "../tasker/nodes/jsonRequirement";
         let dir = await fs.readdir(folderReqPath);
-        console.log(dir);
         res.status(200).send({ status: "success", "message": "fetch successfull", data: { } });
+    },
+
+    async createTask(req,res)
+    {
+        
+        if (!req.body || !req.body.token || !req.body.pipeName)
+            return res.status(403).json({ status: "error", message: "You must send token and pipeName!", data: null });
+        const {token , pipeName} = req.body;
+        const user = await userDBaccess.getUserTroughToken(token);
+        if(user === false)
+            return res.status(403).json({ status: "error", message: "The provided token is not valid !", data: null });
+        // everything needed now create the task and push it to mongo
+        let pipeObject = { pipelineName : pipeName , idOwner : user.idUser , taskList : []}
+        if(req.body.pipelineDesc)
+            pipeObject.pipelineDesc = req.body.pipelineDesc;
+        let result =await TaskAccess.addUserTask(pipeObject);
+        if(result.acknowledged)
+        res.status(200).send({ status: "success", "message": "Task successfully added", data: { id : result.insertedId} });
+        else
+        res.status(505).send({ status: "error", "message": "A server side error occured while adding task please try again later", data: { } });
+
+
     }
 
 }
