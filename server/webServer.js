@@ -18,10 +18,12 @@ const server = http.createServer(app);
 
 app.post("/auth/login" , apiFunc.loginUser)
 app.post("/auth/register",  apiFunc.createUser )
+app.post("/auth/validate",  apiFunc.validateAuth )
 app.get("/nodes/requirement/list" , apiFunc.getReqList)
 app.use("/nodes/requirement/" , express.static(path.join("../tasker/nodes/jsonRequirement")));
 
 app.post("/pipe/create" , apiFunc.createPipeline);
+app.post("/pipe/get" , apiFunc.getAllPipeline);
 app.post("/pipe/task/add" , apiFunc.addTaskToPipe);
 
 async function startApi() 

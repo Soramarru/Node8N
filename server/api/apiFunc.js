@@ -42,7 +42,27 @@ let apiFunc =
         let hashedPassword = await hashPassword(password);
         let newToken = await createUniqueToken();
         console.log(await userDBaccess.createUser(hashedPassword, username, newToken));
-        res.status(200).send({ status: "success", "message": "", data: { username: username, token: newToken } });
+        res.status(200).send({ status: "success", "message": "Account created successfully", data: { username: username, token: newToken } });
+    },
+
+    /**
+     * Receive the token and if it match one in db return the user info 
+     * @param {*} req 
+     * @param {*} res 
+     * @returns 
+     */
+    async validateAuth(req,res)
+    {
+        if (!req.body || !req.body.token)
+            return res.status(400).json({ status: "error", message: "You must send your token!", data: null });
+        let { token } = req.body;
+        let user = await userDBaccess.getUserTroughToken(token);
+        if(user == false)
+            return res.status(400).json({ status: "error", message: "Your token is not valid !", data: null });
+        delete user.hashedPass;
+        delete user.token;
+        return res.status(200).json({ status: "success", message: "You are correctly authenticated", data: user  });
+
     },
 
     /**
@@ -83,6 +103,20 @@ let apiFunc =
         let folderReqPath = "../tasker/nodes/jsonRequirement";
         let dir = await fs.readdir(folderReqPath);
         res.status(200).send({ status: "success", "message": "fetch successfull", data: { } });
+    },
+
+    async getAllPipeline(req,res)
+    {
+        if (!req.body || !req.body.token)
+            return res.status(400).json({ status: "error", message: "You must send your token!", data: null });
+        let { token } = req.body;
+        let user = await userDBaccess.getUserTroughToken(token);
+        if(user == false)
+            return res.status(400).json({ status: "error", message: "Your token is not valid !", data: null });
+        // now that we have a valid user id query it in the mongodb
+        let tasks = await TaskAccess.getUserTasks(user.idUser);
+        res.status(200).send({ status: "success", "message": "Correctly authenticated", data: { tasks } });
+        
     },
 
     async createPipeline(req,res)

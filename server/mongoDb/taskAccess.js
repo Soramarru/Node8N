@@ -35,7 +35,7 @@ const TaskAccess =
     async getUserTasks(userId) 
     {
         const collection = await this.userTasks();
-        return await collection.find({userId : userId}).toArray();
+        return await collection.find({idOwner : userId}).toArray();
     },
 
     async addTaskResult(resultJson) 
@@ -47,7 +47,7 @@ const TaskAccess =
     async getTaskResults(userId) 
     {
         const collection = await this.tasksResult();
-        return await collection.find({userId : userId}).toArray();
+        return await collection.find({idOwner : userId}).toArray();
     }
 };
 
