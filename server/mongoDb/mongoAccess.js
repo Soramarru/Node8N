@@ -21,7 +21,7 @@ let DbConnection =
    async Get() 
    {
         if (this.db != null) 
-            return db;
+            return this.db;
         else 
         {
             this.db = await this.DbConnect();

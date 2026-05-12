@@ -6,7 +6,7 @@ const TaskAccess =
 
     async userTasks() 
     {
-        const db = await DbConnection.Get();
+        let db = await DbConnection.Get();
         return db.collection("userTasks");
     },
 
@@ -14,6 +14,12 @@ const TaskAccess =
     {
         const db = await DbConnection.Get();
         return db.collection("tasksResult");
+    },
+
+    async addUserTask(json)
+    {
+        const collection = await this.userTasks();
+        return await collection.insertOne(json);
     },
 
     async addTaskToPipe(taskJson , pipeId) 
