@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import DbConnection from "./mongoAccess.js";
 
 const TaskAccess = 
@@ -15,16 +16,20 @@ const TaskAccess =
         return db.collection("tasksResult");
     },
 
-    async addUserTask(taskJson) 
+    async addTaskToPipe(taskJson , pipeId) 
     {
         const collection = await this.userTasks();
         /*
+
             {
                 acknowledged: true,
                 insertedId: new ObjectId('69fc59cc32adeb4d85e05b4c')
             }
         */
-        return await collection.insertOne(taskJson);
+        return await collection.updateOne(
+            { _id: new ObjectId(pipeId) },
+            { $push: { taskList: taskJson }}
+        );
     },
 
     async getUserTasks(userId) 
