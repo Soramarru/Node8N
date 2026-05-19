@@ -98,11 +98,19 @@ let apiFunc =
             res.status(403).send({ status: "error", "message": "The password doesn't match the username", data: {} });
     },
 
-    async getReqList(req,res)
+    async getNodesReqList(req,res)
     {
-        let folderReqPath = "../tasker/nodes/jsonRequirement";
+        let folderReqPath = "./tasker/nodes/jsonRequirement";
         let dir = await fs.readdir(folderReqPath);
-        res.status(200).send({ status: "success", "message": "fetch successfull", data: { } });
+        res.status(200).send({ status: "success", "message": "fetch successfull", data: {dir } });
+    },
+
+    async getLogicalsReqList(req,res)
+    {
+        let folderReqPath = "./tasker/logicalBlock/jsonRequirement";
+        let dir = await fs.readdir(folderReqPath);
+        res.status(200).send({ status: "success", "message": "fetch successfull", data: {dir } });
+
     },
 
     async getAllPipeline(req,res)
@@ -138,7 +146,7 @@ let apiFunc =
         if(result.acknowledged)
             return res.status(200).send({ status: "success", "message": "Task successfully added", data: { id : result.insertedId} });
         else
-            return res.status(505).send({ status: "error", "message": "A server side error occured while adding task please try again later", data: { } });
+            return res.status(500).send({ status: "error", "message": "A server side error occured while adding task please try again later", data: { } });
     },
 
     async addTaskToPipe(req,res)
@@ -162,7 +170,7 @@ let apiFunc =
         if(response.acknowledged)
             return res.status(200).send({ status: "success", "message": "In construction full check", data: { } });
         else
-            return res.status(500).json({ status: "error", message: "An error occured on our side please try again later" , data: "" });
+            return res.status(500).json({ status: "error", message: "An error occured on our side please try again later" , data: {} });
     }
 
 }

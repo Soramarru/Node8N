@@ -38,7 +38,6 @@
             lblGreet.Name = "lblGreet";
             lblGreet.Size = new Size(334, 53);
             lblGreet.TabIndex = 0;
-            lblGreet.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // PipeView
             // 

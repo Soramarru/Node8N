@@ -15,7 +15,6 @@ namespace n8nClient
             ApplicationConfiguration.Initialize();
             RoutesController.RouteTo("auth");
             Application.Run();
-            
         }
     }
 }
