@@ -28,6 +28,7 @@ app.get("/logicals/requirement/list" , apiFunc.getLogicalsReqList)
 app.use("/logicals/requirement/" , express.static(path.join("./tasker/logicalBlock/jsonRequirement")));
 
 app.post("/pipe/create" , apiFunc.createPipeline);
+app.post("/pipe/delete" , apiFunc.deletePipeline)
 app.post("/pipe/get" , apiFunc.getAllPipeline);
 app.post("/pipe/task/add" , apiFunc.addTaskToPipe);
 

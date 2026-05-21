@@ -15,6 +15,12 @@ const TaskAccess =
         const db = await DbConnection.Get();
         return db.collection("tasksResult");
     },
+    
+    async removePipeline(mongoId)
+    {
+        const collection = await this.userTasks();
+        const result = await collection.deleteOne({_id : new ObjectId(mongoId)});
+    },
 
     async addUserTask(json)
     {

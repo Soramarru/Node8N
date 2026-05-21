@@ -122,8 +122,8 @@ let apiFunc =
         if(user == false)
             return res.status(400).json({ status: "error", message: "Your token is not valid !", data: null });
         // now that we have a valid user id query it in the mongodb
-        let tasks = await TaskAccess.getUserTasks(user.idUser);
-        res.status(200).send({ status: "success", "message": "Correctly authenticated", data: { tasks } });
+        let pipes = await TaskAccess.getUserTasks(user.idUser);
+        res.status(200).send({ status: "success", "message": "Correctly authenticated", data: { pipes } });
         
     },
 
@@ -142,11 +142,23 @@ let apiFunc =
             pipeObject.pipelineDesc = req.body.pipelineDesc;
         else
             pipeObject.pipelineDesc = "";
-        let result =await TaskAccess.addUserTask(pipeObject);
+        let result = await TaskAccess.addUserTask(pipeObject);
         if(result.acknowledged)
             return res.status(200).send({ status: "success", "message": "Task successfully added", data: { id : result.insertedId} });
         else
             return res.status(500).send({ status: "error", "message": "A server side error occured while adding task please try again later", data: { } });
+    },
+
+    async deletePipeline(req,res)
+    {
+        if (!req.body || !req.body.token || !req.body.mongoId)
+            return res.status(403).json({ status: "error", message: "You must send token and mongoId!", data: null });
+        const {token , mongoId} = req.body;
+        const user = await userDBaccess.getUserTroughToken(token);
+        if(user === false)
+            return res.status(403).json({ status: "error", message: "The provided token is not valid !", data: null });
+        let result = await TaskAccess.removePipeline(mongoId);
+        return res.status(200).send({ status: "success", "message": "Task successfully deleted", data: { } });
     },
 
     async addTaskToPipe(req,res)
