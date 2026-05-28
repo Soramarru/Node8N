@@ -13,7 +13,6 @@ const webhookSender =
     async run(checkedData)
     {
         console.log(checkedData);
-        
         const payload = this.createPayload(checkedData.message);
         const result = await fetch(checkedData.webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     },

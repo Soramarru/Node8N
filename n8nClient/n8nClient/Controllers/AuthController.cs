@@ -2,30 +2,17 @@
 using n8nClient.Requesters;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace n8nClient.Controllers
 {
-    internal class AuthController : IController
+    internal class AuthController
     {
-        // required IController func
-
-        public static void ShowPage()
-        {
-
-        }
-
-        public static void HidePage()
-        {
-
-        }
-        // class specific code
-        public static bool IsLoggedIn()
-        {
-            return false;
-        }
-
+        /// <summary>
+        /// Attempt a login request to the api and notify the user if it fails else login it and redirect him
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static async Task<ApiResult> AttemptLogin(string username , string password)
         {
             ApiResult res = await AuthRequests.Login(username, password);
@@ -41,6 +28,12 @@ namespace n8nClient.Controllers
 
         }
 
+        /// <summary>
+        /// Attempt a register request to the api and notify the user if it fails else register it and redirect him
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static async Task<ApiResult> AttemptRegister(string username, string password)
         {
             ApiResult res = await AuthRequests.Register(username, password);

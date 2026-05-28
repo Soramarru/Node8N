@@ -1,0 +1,35 @@
+CREATE DATABASE IF NOT EXISTS node8n;
+CREATE USER IF NOT EXISTS 'node8n'@'localhost' IDENTIFIED BY 'node8n';
+CREATE USER IF NOT EXISTS 'node8n'@'127.0.0.1' IDENTIFIED BY 'node8n';
+GRANT ALL PRIVILEGES ON node8n.* TO 'node8n'@'localhost';
+GRANT ALL PRIVILEGES ON node8n.* TO 'node8n'@'127.0.0.1';
+FLUSH PRIVILEGES;
+
+USE node8n;
+
+CREATE TABLE `User` (
+  `idUser` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `hashedPass` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Indexes for table `User`
+--
+ALTER TABLE `User`
+  ADD PRIMARY KEY (`idUser`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `User`
+--
+ALTER TABLE `User`
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -121,6 +121,9 @@
             Controls.Add(lblStaticUsername);
             Controls.Add(txbPassword);
             Controls.Add(txbUsername);
+            MaximizeBox = false;
+            MaximumSize = new Size(900, 500);
+            MinimumSize = new Size(900, 500);
             Name = "AuthPage";
             Text = "Authentication";
             ResumeLayout(false);

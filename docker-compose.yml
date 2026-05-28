@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+  mysql:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: node8n
+      MYSQL_DATABASE: node8n
+      MYSQL_USER: node8n
+      MYSQL_PASSWORD: node8n
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  app:
+    image: node:22-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - mongo
+      - mysql
+    environment:
+      DATA_JSON: |
+        {"host":"mysql","user":"node8n","password":"node8n","database":"node8n","mongodbUri":"mongodb://mongo:27017"}
+    entrypoint: sh -c 'echo "$$DATA_JSON" > /app/data.json && npm install && node server.js'

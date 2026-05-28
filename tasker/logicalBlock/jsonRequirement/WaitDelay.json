@@ -1,0 +1,27 @@
+{
+    "title" : "Wait Delay",
+    "description" : "Pauses the pipeline for a selected hours and minutes before continuiing",
+    "validationFields" : 
+    [
+        {
+            "objId" : "hours",
+            "title" : "Hours to wait",
+            "labelText" : "Hours",
+            "placeholder" : "0",
+            "required" : false,
+            "wantedType" : "int",
+            "min" : 0,
+            "max" : 72
+        },
+        {
+            "objId" : "minutes",
+            "title" : "Minutes to wait",
+            "labelText" : "Minutes",
+            "placeholder" : "30",
+            "required" : false,
+            "wantedType" : "int",
+            "min" : 0,
+            "max" : 59
+        }
+    ]
+}

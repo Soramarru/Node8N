@@ -1,0 +1,18 @@
+
+{
+    "title" : "Website checker",
+    "description" : "Try to fetch a certain uri and return wether its a 200 or not",
+    "validationFields" : 
+    [
+        {
+            "objId" : "Uri/Url",
+            "title" : "Insert the link to check",
+            "labelText" : "Link",
+            "placeholder" : "http://...",
+            "required" : true,
+            "wantedType" : "string"
+        }
+       
+    ]
+
+} 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using n8nClient.Modeles;
 
 namespace n8nClient.Controllers
 {
@@ -10,6 +11,11 @@ namespace n8nClient.Controllers
         // The current shown form
         public static Form? runningForm;
         
+        /// <summary>
+        /// Router that any controller can request, throw an error if the route doesnt exist
+        /// </summary>
+        /// <param name="target"></param>
+        /// <exception cref="ArgumentException"></exception>
         public static void RouteTo(string target)
         {
             Form? nextForm = (target.ToLower()) switch
@@ -27,6 +33,7 @@ namespace n8nClient.Controllers
             runningForm.FormClosed += (s, e) => Application.ExitThread(); 
             runningForm.Show();
         }
+
         public static void Exit()
         {
             Application.ExitThread();

@@ -10,7 +10,7 @@
             "taskDescription": "un-required user inputted",
             "taskNodeName": "UriAvailabilityChecker",
             "data": {
-                "uri": "https://frezzix.com"
+                "uri": "https://freezix.com"
             }
         },
         {

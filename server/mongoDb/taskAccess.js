@@ -28,16 +28,15 @@ const TaskAccess =
         return await collection.insertOne(json);
     },
 
+    async getAllTasks() 
+    {
+        const collection = await this.userTasks();
+        return await collection.find({}).toArray();
+    },
+
     async addTaskToPipe(taskJson , pipeId) 
     {
         const collection = await this.userTasks();
-        /*
-
-            {
-                acknowledged: true,
-                insertedId: new ObjectId('69fc59cc32adeb4d85e05b4c')
-            }
-        */
         return await collection.updateOne(
             { _id: new ObjectId(pipeId) },
             { $push: { taskList: taskJson }}
@@ -60,7 +59,13 @@ const TaskAccess =
     {
         const collection = await this.tasksResult();
         return await collection.find({idOwner : userId}).toArray();
-    }
+    },
+
+    async getPipelineById(pipeId)
+    {
+        const collection = await this.userTasks();
+        return await collection.findOne({ _id: new ObjectId(pipeId) });
+    },
 };
 
 export default TaskAccess;

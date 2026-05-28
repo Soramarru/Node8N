@@ -24,5 +24,6 @@ namespace n8nClient.Requesters
             string uri = Globals.API_URI + "/auth/validate";
             return await Requesters.Post(uri, new { Globals.token });
         }
+
     }
 }

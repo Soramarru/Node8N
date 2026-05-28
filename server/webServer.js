@@ -16,22 +16,24 @@ app.use(cors());
 
 const server = http.createServer(app);
 
+// auth area
 app.post("/auth/login" , apiFunc.loginUser)
 app.post("/auth/register",  apiFunc.createUser )
 app.post("/auth/validate",  apiFunc.validateAuth )
 
-
+// node and logical requirement serving area
 app.get("/nodes/requirement/list" , apiFunc.getNodesReqList)
 app.use("/nodes/requirement/" , express.static(path.join("./tasker/nodes/jsonRequirement")));
-
 app.get("/logicals/requirement/list" , apiFunc.getLogicalsReqList)
 app.use("/logicals/requirement/" , express.static(path.join("./tasker/logicalBlock/jsonRequirement")));
 
+// pipe and mongodb access area
 app.post("/pipe/create" , apiFunc.createPipeline);
 app.post("/pipe/delete" , apiFunc.deletePipeline)
 app.post("/pipe/get" , apiFunc.getAllPipeline);
 app.post("/pipe/task/add" , apiFunc.addTaskToPipe);
 
+// serve up the server to a port
 async function startApi() 
 {
   server.listen(port, () => 
@@ -39,5 +41,4 @@ async function startApi()
     console.log("API server started on http://localhost:" + port);
   });
 }
-// C:\Users\soramaru\Desktop\Node\Node8N\tasker\logicalBlock\ConditionalRouter.js
 export default startApi;
