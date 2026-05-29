@@ -64,6 +64,8 @@ namespace n8nClient.Views
                 MessageBox.Show("You must select a pipeline !");
                 return;
             }
+            if (pipelineList == null)
+                return;
             Pipeline selPipe = pipelineList[targetIndex];
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this task ? '" + selPipe.PipelineName + "'", "Delete task", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)

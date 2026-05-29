@@ -40,6 +40,8 @@ namespace n8nClient.Controllers
                     MessageBox.Show("User cancelled insertion.");
                     return null;
                 }
+                if(inputForm.result == null)
+                    return new ApiResult("warning", "The data provided can not be used .", "");
                 Console.WriteLine("Requested a " + constraint.WantedType + " But received a " + inputForm.result.GetType().ToString());
                 collectedInputs[constraint.ObjId] = inputForm.result;
 

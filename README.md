@@ -7,6 +7,9 @@ Installer docker ( peu importe la plateforme ) entrer dans ce dossier et lance
 docker compose up
 ```
 
+## Lancer le client c#
+Il se trouve dans le dossier "n8nClient" lance le .slnx
+
 ## Manuel utilisateur :
 Il a été mis en piece jointe avec le projet il n'est pas ici car non versionner.
 
