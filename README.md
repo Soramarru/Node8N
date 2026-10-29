@@ -1,25 +1,22 @@
 # Node8N
 
 
-## Comment lancer le projet
-Installer docker ( peu importe la plateforme ) entrer dans ce dossier et lance 
+## How to launch the project
+Install Docker (any platform), go into this folder and run:
 ```shell
 docker compose up
 ```
 
-## Lancer le client c#
-Il se trouve dans le dossier "n8nClient" lance le .slnx
+## Launch the C# client
+It is located in the "n8nClient" folder. Open the .slnx file.
 
-## Manuel utilisateur :
-Il a été mis en piece jointe avec le projet il n'est pas ici car non versionner.
-
-## Comment lancer les tests
-ici une version de node js est obligatoire ( recommandée node 22 )
-Lancer la commande dans le meme repertoire que le readme
+## How to run the tests
+A Node.js version is required here (Node 22 recommended).
+Run the command in the same directory as the README:
 ```shell
 npm i
 npm test -- server/test.js
 ```
 
-## Pour aller plus loin
-D'autres information plus "technique" sont dans le dossier tasker pour comprendre comment maintenir et rajouter des tache a l'api et au tasker
+## Going further
+More "technical" information is in the tasker folder, to understand how to maintain and add tasks to the API and the tasker.
